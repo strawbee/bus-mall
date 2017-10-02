@@ -2,7 +2,50 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: auto;
+  text-align: center;
+  font-family: Raleway, sans-serif;
+  background: #bed4e2;
+}
+
 img {
   height: 200px;
   width: auto;
+  margin: 10px;
+  border: solid 1px #eff4f7;
+  opacity: 0.8;
+}
+
+img:hover {
+  opacity: 1.0;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #b1c6d3;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  font-weight: 900;
+  padding: 40px 20px 50px 20px;
+  background: #0072ba;
+  color: white;
+  border-bottom: dotted 1px white;
+  text-shadow: 2px 2px 2px #6993ad;
+}
+
+#randomImages {
+  display: inline-block;
+  padding: 30px;
+  margin: -30px auto 0 auto;
+  background: #005389;
+  color: #fff;
+  border: 5px solid #8fafc4;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: -2px 2px 2px #d5dfe5;
+}
+
+#descriptionOfTask {
+    margin-bottom: 20px;
 }
