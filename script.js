@@ -1,6 +1,7 @@
 'use strict';
 
 RandomImages.all = [];
+RandomImages.percentClicked = [];
 
 function RandomImages(name, url) {
   this.name = name;
@@ -85,7 +86,16 @@ function displayImages(e) {
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
     console.log('VIEWS AND VOTES:');
     for (var i = 0; i < RandomImages.all.length; i++) {
-      randomImagesContent.innerHTML += RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes<br />';
+      randomImagesContent.innerHTML += RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes';
+
+      var randomImagesPercent = RandomImages.all[i].votes / RandomImages.all[i].views * 100;
+      RandomImages.percentClicked[i] = randomImagesPercent;
+      if (!isNaN(randomImagesPercent) && randomImagesPercent !== 0) {
+        randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
+      }
+
+      randomImagesContent.innerHTML += '<br />';
+
       console.log(RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes');
     }
   }
