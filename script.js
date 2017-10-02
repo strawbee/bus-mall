@@ -35,21 +35,23 @@ new RandomImages('Wine Glass', 'images/wine-glass.jpg');
 var image1El = document.getElementById('image1');
 var image2El = document.getElementById('image2');
 var image3El = document.getElementById('image3');
-
-var noDisplay1, noDisplay2, noDisplay3;
+var noDisplay1, noDisplay2, noDisplay3, random1, random2, random3, randomIndex1, randomIndex2, randomIndex3;
 var displayCounter = 0;
 
 // Function Called When Image Is Clicked
 function displayImages(e) {
   var target = e.target;
   if (target == image1El) {
-    RandomImages.all[randomIndex1].votes += 1;
+    random1.votes += 1;
+    console.log(random1.name + ' has been voted for ' + random1.votes + ' times.');
   }
   else if (target == image2El) {
-    RandomImages.all[randomIndex2].votes += 1;
+    random2.votes += 1;
+    console.log(random2.name + ' has been voted for ' + random2.votes + ' times.');
   }
   else if (target == image3El) {
-    RandomImages.all[randomIndex3].votes += 1;
+    random3.votes += 1;
+    console.log(random3.name + ' has been voted for ' + random3.votes + ' times.');
   }
 
   randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
@@ -68,23 +70,30 @@ function displayImages(e) {
     randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
   }
 
-  image1El.src = RandomImages.all[randomIndex1].url;
-  image2El.src = RandomImages.all[randomIndex2].url;
-  image3El.src = RandomImages.all[randomIndex3].url;
+  random1 = RandomImages.all[randomIndex1];
+  random2 = RandomImages.all[randomIndex2];
+  random3 = RandomImages.all[randomIndex3];
+
+  image1El.src = random1.url;
+  image2El.src = random2.url;
+  image3El.src = random3.url;
 
   noDisplay1 = randomIndex1;
   noDisplay2 = randomIndex2;
   noDisplay3 = randomIndex3;
 
-  RandomImages.all[randomIndex1].views += 1;
-  RandomImages.all[randomIndex2].views += 1;
-  RandomImages.all[randomIndex3].views += 1;
+  random1.views += 1;
+  random2.views += 1;
+  random3.views += 1;
+
+  console.log(random1.name + ' has been viewed ' + random1.views + ' times.');
+  console.log(random2.name + ' has been viewed ' + random2.views + ' times.');
+  console.log(random3.name + ' has been viewed ' + random3.views + ' times.');
 
   displayCounter++;
   if (displayCounter === 25) {
     var randomImagesContent = document.getElementById('randomImages');
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
-    console.log('VIEWS AND VOTES:');
     for (var i = 0; i < RandomImages.all.length; i++) {
       randomImagesContent.innerHTML += RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes';
 
@@ -95,17 +104,14 @@ function displayImages(e) {
       }
 
       randomImagesContent.innerHTML += '<br />';
-
-      console.log(RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes');
     }
   }
 }
 
 // Display Initial Random Images
-
-var randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
-var randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
-var randomIndex3 = Math.floor(Math.random() * RandomImages.all.length);
+randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
+randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
+randomIndex3 = Math.floor(Math.random() * RandomImages.all.length);
 
 while (randomIndex2 === randomIndex3) {
   randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
@@ -115,17 +121,25 @@ while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3) {
   randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
 }
 
-image1El.src = RandomImages.all[randomIndex1].url;
-image2El.src = RandomImages.all[randomIndex2].url;
-image3El.src = RandomImages.all[randomIndex3].url;
+random1 = RandomImages.all[randomIndex1];
+random2 = RandomImages.all[randomIndex2];
+random3 = RandomImages.all[randomIndex3];
+
+image1El.src = random1.url;
+image2El.src = random2.url;
+image3El.src = random3.url;
 
 noDisplay1 = randomIndex1;
 noDisplay2 = randomIndex2;
 noDisplay3 = randomIndex3;
 
-RandomImages.all[randomIndex1].views += 1;
-RandomImages.all[randomIndex2].views += 1;
-RandomImages.all[randomIndex3].views += 1;
+random1.views += 1;
+random2.views += 1;
+random3.views += 1;
+
+console.log(random1.name + ' has been viewed ' + random1.views + ' times.');
+console.log(random2.name + ' has been viewed ' + random2.views + ' times.');
+console.log(random3.name + ' has been viewed ' + random3.views + ' times.');
 
 // Event Listeners
 
