@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   </head>
   <body>
 
@@ -17,11 +18,18 @@
         Your results will display after 25 selections.
       </p>
 
-      <span id="allImages">
+      <p id="descriptionOfResults">
+        Your current votes have been saved. You have made <span id="saveCount"></span> votes.<br />
+        [ <a href="index.html" alt="Keep Voting">Keep Voting</a> ] [ <a id="clearStorage" href="index.html" alt="Clear Previous Votes">Clear Previous Votes</a> ]
+      </p>
+
+      <p id="allImages">
         <img id="image1" src="" />
         <img id="image2" src="" />
         <img id="image3" src="" />
-      </span>
+      </p>
+
+      <canvas id="results" width="800" height="600"></canvas>
     </div>
 
     <script src="script.js"></script>
