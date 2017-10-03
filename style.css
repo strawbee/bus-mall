@@ -14,14 +14,14 @@ img {
   height: 200px;
   width: auto;
   margin: 10px;
-  border: solid 1px #eff4f7;
+  border: solid 1px #d31550;
   opacity: 0.8;
 }
 
 img:hover {
   opacity: 1.0;
   cursor: pointer;
-  box-shadow: 2px 2px 2px #ffbfd3;
+  box-shadow: 2px 2px 2px #c63562;
 }
 
 h1 {
