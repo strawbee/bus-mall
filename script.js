@@ -37,9 +37,77 @@ var image2El = document.getElementById('image2');
 var image3El = document.getElementById('image3');
 var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
 
+var names = [];
+var percents = [];
+
+function updateChartArrays() {
+  for (var i = 0; i < RandomImages.all.length; i++) {
+    var randomImg = RandomImages.all[i];
+
+    // Adds current results to locally stored results, if any
+    if (localStorage.saveCount > 0) {
+      randomImg.views = parseInt(localStorage[i + 'views']) + randomImg.views;
+      randomImg.votes = parseInt(localStorage[i + 'votes']) + randomImg.votes;
+    }
+    // Saves results to local storage
+    localStorage[i + 'views'] = randomImg.views;
+    localStorage[i + 'votes'] = randomImg.votes;
+
+    names[i] = randomImg.name + ' ' + randomImg.votes + '/' + randomImg.views;
+    var imagesPercents = randomImg.votes / randomImg.views * 100;
+    percents[i] = imagesPercents.toFixed(1);
+  }
+}
+
+function displayChart() {
+  var ctx = document.getElementById('results').getContext('2d');
+  new Chart(ctx,{
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '% voted',
+        backgroundColor: 'pink',
+        borderColor: 'white',
+        data: percents,
+      }]
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      responsive: false,
+      animation: {
+        duration: 1000,
+        easing: 'easeOutBounce',
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            fontColor: 'white',
+            autoSkip: false,
+          },
+          gridLines: {
+            color: '#f76795',
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            fontColor: 'white',
+            min: 0,
+          },
+          gridLines: {
+            color: '#f76795',
+          }
+        }]
+      }
+    },
+  });
+}
+
 // Function called when image is clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, randomImagesContent, i, randomImg, randomImagesPercent;
+  var randomIndex1, randomIndex2, randomIndex3, allImages, results;
 
   // Adds vote for item clicked
   var target = event.target;
@@ -96,35 +164,20 @@ function displayImages(event) {
   // Checks if user has voted 25 times
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
-    randomImagesContent = document.getElementById('allImages');
-    randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
-    for (i = 0; i < RandomImages.all.length; i++) {
-      randomImg = RandomImages.all[i];
+    allImages = document.getElementById('allImages');
+    results = document.getElementById('results');
 
-      // Adds current results to locally stored results, if any
-      if (localStorage.saveCount > 0) {
-        randomImg.views = parseInt(localStorage[i + 'views']) + randomImg.views;
-        randomImg.votes = parseInt(localStorage[i + 'votes']) + randomImg.votes;
-      }
+    allImages.style.display = 'none';
+    results.style.display = 'block';
+    document.getElementById('descriptionOfTask').style.display = 'none';
+    document.getElementById('descriptionOfResults').style.display = 'block';
 
-      // Saves results to local storage
-      localStorage[i + 'views'] = randomImg.views;
-      localStorage[i + 'votes'] = randomImg.votes;
+    updateChartArrays();
+    displayChart();
 
-      // Calculates percentage voted for
-      randomImagesPercent = randomImg.votes / randomImg.views * 100;
-
-      // Displays item name, views, votes, and percentage voted for
-      randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
-      if (!isNaN(randomImagesPercent)) {
-        randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
-      }
-      randomImagesContent.innerHTML += '<br />';
-
-    }
     // Allows user to continue voting or to reset saved data
     localStorage.saveCount = parseInt(localStorage.saveCount) + 1;
-    document.getElementById('descriptionOfTask').innerHTML = 'Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\"index.html\" alt=\"Keep Voting\">Keep Voting</a> ] [ <a id=\"clearStorage\" href=\"index.html\" alt=\"Clear Previous Votes\">Clear Previous Votes</a> ]';
+    document.getElementById('saveCount').innerHTML = parseInt(localStorage.saveCount) * 25;
     document.getElementById('clearStorage').addEventListener('click', clearStorage);
   }
 }
