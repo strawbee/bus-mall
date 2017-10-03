@@ -37,10 +37,11 @@ var image2El = document.getElementById('image2');
 var image3El = document.getElementById('image3');
 var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
 
-// Function Called When Image Is Clicked
+// Function called when image is clicked
 function displayImages(event) {
   var randomIndex1, randomIndex2, randomIndex3, randomImagesContent, i, randomImg, randomImagesPercent;
 
+  // Adds vote for item clicked
   var target = event.target;
   if (target === image1El) {
     random1.votes += 1;
@@ -55,6 +56,7 @@ function displayImages(event) {
     console.log(random3.name + ' has been voted for ' + random3.votes + ' times.');
   }
 
+  // Generates new images, checks they do not repeat current or previous iteration, & adds views
   randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
   randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
   randomIndex3 = Math.floor(Math.random() * RandomImages.all.length);
@@ -91,6 +93,7 @@ function displayImages(event) {
   console.log(random2.name + ' has been viewed ' + random2.views + ' times.');
   console.log(random3.name + ' has been viewed ' + random3.views + ' times.');
 
+  // Checks if user has voted 25 times
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
     randomImagesContent = document.getElementById('randomImages');
@@ -98,29 +101,35 @@ function displayImages(event) {
     for (i = 0; i < RandomImages.all.length; i++) {
       randomImg = RandomImages.all[i];
 
+      // Adds current results to locally stored results, if any
       if (localStorage.saveCount > 0) {
         randomImg.views = parseInt(localStorage[i + 'views']) + randomImg.views;
         randomImg.votes = parseInt(localStorage[i + 'votes']) + randomImg.votes;
       }
 
+      // Saves results to local storage
       localStorage[i + 'views'] = randomImg.views;
       localStorage[i + 'votes'] = randomImg.votes;
 
-      randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
-
+      // Calculates percentage voted for
       randomImagesPercent = randomImg.votes / randomImg.views * 100;
+
+      // Displays item name, views, votes, and percentage voted for
+      randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
       if (!isNaN(randomImagesPercent)) {
         randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
       }
       randomImagesContent.innerHTML += '<br />';
 
     }
+    // Allows user to continue voting or to reset saved data
     localStorage.saveCount = parseInt(localStorage.saveCount) + 1;
-    randomImagesContent.innerHTML += '<br />Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\'index.html\'>Keep Voting</a> ] [ <a id=\'clearStorage\' href=\'index.html\'>Clear Previous Votes</a> ]';
+    randomImagesContent.innerHTML += '<br />Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\"index.html\" alt=\"Keep Voting\">Keep Voting</a> ] [ <a id=\"clearStorage\" href=\"index.html\" alt=\"Clear Previous Votes\">Clear Previous Votes</a> ]';
     document.getElementById('clearStorage').addEventListener('click', clearStorage);
   }
 }
 
+// Local storage save count and clear function
 if (!localStorage.saveCount) {
   localStorage.saveCount = 0;
 }
