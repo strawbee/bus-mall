@@ -34,12 +34,12 @@ new RandomImages('Wine Glass', 'images/wine-glass.jpg');
 var image1El = document.getElementById('image1');
 var image2El = document.getElementById('image2');
 var image3El = document.getElementById('image3');
-var random1, random2, random3;
+var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
 var displayCounter = 0;
 
 // Function Called When Image Is Clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, noDisplay1, noDisplay2, noDisplay3, randomImg, randomImagesPercent;
+  var randomIndex1, randomIndex2, randomIndex3, randomImg, randomImagesPercent;
 
   var target = event.target;
   if (target === image1El) {
@@ -109,10 +109,8 @@ function displayImages(event) {
   }
 }
 
-window.addEventListener('load', displayImages);
-
 // Event Listeners
-
+window.addEventListener('load', displayImages);
 image1El.addEventListener('click', displayImages);
 image2El.addEventListener('click', displayImages);
 image3El.addEventListener('click', displayImages);
