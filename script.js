@@ -45,15 +45,15 @@ function displayImages(event) {
   var target = event.target;
   if (target === image1El) {
     random1.votes += 1;
-    console.log(random1.name + ' has been voted for ' + random1.votes + ' times.');
+    console.log('* ' + random1.name + ' has been voted for ' + random1.votes + ' times in this iteration.');
   }
   else if (target === image2El) {
     random2.votes += 1;
-    console.log(random2.name + ' has been voted for ' + random2.votes + ' times.');
+    console.log('* ' + random2.name + ' has been voted for ' + random2.votes + ' times in this iteration.');
   }
   else if (target === image3El) {
     random3.votes += 1;
-    console.log(random3.name + ' has been voted for ' + random3.votes + ' times.');
+    console.log('* ' + random3.name + ' has been voted for ' + random3.votes + ' times in this iteration.');
   }
 
   // Generates new images, checks they do not repeat current or previous iteration, & adds views
@@ -89,14 +89,14 @@ function displayImages(event) {
   random2.views += 1;
   random3.views += 1;
 
-  console.log(random1.name + ' has been viewed ' + random1.views + ' times.');
-  console.log(random2.name + ' has been viewed ' + random2.views + ' times.');
-  console.log(random3.name + ' has been viewed ' + random3.views + ' times.');
+  console.log(random1.name + ' has been viewed ' + random1.views + ' times in this iteration.');
+  console.log(random2.name + ' has been viewed ' + random2.views + ' times in this iteration.');
+  console.log(random3.name + ' has been viewed ' + random3.views + ' times in this iteration.');
 
   // Checks if user has voted 25 times
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
-    randomImagesContent = document.getElementById('randomImages');
+    randomImagesContent = document.getElementById('allImages');
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
     for (i = 0; i < RandomImages.all.length; i++) {
       randomImg = RandomImages.all[i];
@@ -124,7 +124,7 @@ function displayImages(event) {
     }
     // Allows user to continue voting or to reset saved data
     localStorage.saveCount = parseInt(localStorage.saveCount) + 1;
-    randomImagesContent.innerHTML += '<br />Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\"index.html\" alt=\"Keep Voting\">Keep Voting</a> ] [ <a id=\"clearStorage\" href=\"index.html\" alt=\"Clear Previous Votes\">Clear Previous Votes</a> ]';
+    document.getElementById('descriptionOfTask').innerHTML = 'Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\"index.html\" alt=\"Keep Voting\">Keep Voting</a> ] [ <a id=\"clearStorage\" href=\"index.html\" alt=\"Clear Previous Votes\">Clear Previous Votes</a> ]';
     document.getElementById('clearStorage').addEventListener('click', clearStorage);
   }
 }
