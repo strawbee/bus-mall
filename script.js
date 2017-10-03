@@ -39,7 +39,7 @@ var displayCounter = 0;
 
 // Function Called When Image Is Clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, randomImg, randomImagesPercent;
+  var randomIndex1, randomIndex2, randomIndex3, randomImagesContent, i, randomImg, randomImagesPercent;
 
   var target = event.target;
   if (target === image1El) {
@@ -93,9 +93,9 @@ function displayImages(event) {
 
   displayCounter++;
   if (displayCounter === 26) {
-    var randomImagesContent = document.getElementById('randomImages');
+    randomImagesContent = document.getElementById('randomImages');
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
-    for (var i = 0; i < RandomImages.all.length; i++) {
+    for (i = 0; i < RandomImages.all.length; i++) {
       randomImg = RandomImages.all[i];
       randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
 
