@@ -6,7 +6,8 @@ body {
   margin: auto;
   text-align: center;
   font-family: Raleway, sans-serif;
-  background: #bed4e2;
+  background: #ffd3e1;
+  line-height: 1.8em;
 }
 
 img {
@@ -20,15 +21,15 @@ img {
 img:hover {
   opacity: 1.0;
   cursor: pointer;
-  box-shadow: 2px 2px 2px #b1c6d3;
+  box-shadow: 2px 2px 2px #ffbfd3;
 }
 
 h1 {
   font-size: 3em;
   text-align: center;
   font-weight: 900;
-  padding: 40px 20px 50px 20px;
-  background: #0072ba;
+  padding: 50px 20px 60px 20px;
+  background: #ff7aa3;
   color: white;
   border-bottom: dotted 1px white;
   text-shadow: 2px 2px 2px #6993ad;
@@ -38,12 +39,12 @@ h1 {
   display: inline-block;
   padding: 30px;
   margin: -30px auto 0 auto;
-  background: #005389;
+  background: #f4447c;
   color: #fff;
-  border: 5px solid #8fafc4;
+  border: 5px solid #fff;
   border-radius: 10px;
   text-align: center;
-  box-shadow: -2px 2px 2px #d5dfe5;
+  box-shadow: -2px 2px 2px #ffbfd3;
 }
 
 #descriptionOfTask {

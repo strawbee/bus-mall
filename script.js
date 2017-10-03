@@ -103,7 +103,6 @@ function displayImages(event) {
       if (!isNaN(randomImagesPercent)) {
         randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
       }
-
       randomImagesContent.innerHTML += '<br />';
     }
   }
