@@ -15,6 +15,10 @@ a {
   text-decoration: dotted underline;
 }
 
+p {
+  margin-bottom: 20px;
+}
+
 img {
   height: 200px;
   width: auto;
@@ -40,7 +44,7 @@ h1 {
   text-shadow: 2px 2px 2px #f4447c;
 }
 
-#randomImages {
+section {
   display: inline-block;
   padding: 30px;
   margin: -30px auto 0 auto;
@@ -52,20 +56,14 @@ h1 {
   box-shadow: -2px 2px 2px #ffbfd3;
 }
 
+canvas {
+  padding: 20px;
+}
+
 #allImages {
   display: block;
 }
 
-#descriptionOfTask {
-  margin-bottom: 20px;
-}
-
-#descriptionOfResults {
-  margin-bottom: 20px;
+#showResults {
   display: none;
-}
-
-canvas {
-  display: none;
-  padding: 20px;
 }

@@ -165,7 +165,7 @@ function displayChartPercentages() {
 
 // Function called when image is clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, allImages, voteResults, percentageResults;
+  var randomIndex1, randomIndex2, randomIndex3, allImages, showResults;
 
   // Adds vote for item clicked
   var target = event.target;
@@ -223,14 +223,9 @@ function displayImages(event) {
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
     allImages = document.getElementById('allImages');
-    voteResults = document.getElementById('voteResults');
-    percentageResults = document.getElementById('percentageResults');
-
+    showResults = document.getElementById('showResults');
     allImages.style.display = 'none';
-    voteResults.style.display = 'block';
-    percentageResults.style.display = 'block';
-    document.getElementById('descriptionOfTask').style.display = 'none';
-    document.getElementById('descriptionOfResults').style.display = 'block';
+    showResults.style.display = 'block';
 
     updateChartArrays();
     displayChartVotes();
