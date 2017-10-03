@@ -38,6 +38,7 @@ var image3El = document.getElementById('image3');
 var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
 
 var names = [];
+var votes = [];
 var percents = [];
 
 function updateChartArrays() {
@@ -54,13 +55,65 @@ function updateChartArrays() {
     localStorage[i + 'votes'] = randomImg.votes;
 
     names[i] = randomImg.name + ' ' + randomImg.votes + '/' + randomImg.views;
+    votes[i] = randomImg.votes;
     var imagesPercents = randomImg.votes / randomImg.views * 100;
     percents[i] = imagesPercents.toFixed(1);
   }
 }
 
-function displayChart() {
-  var ctx = document.getElementById('results').getContext('2d');
+function displayChartVotes() {
+  var ctx = document.getElementById('voteResults').getContext('2d');
+  new Chart(ctx,{
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '# votes',
+        backgroundColor: 'pink',
+        borderColor: 'white',
+        data: votes,
+      }]
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: 'Number of Votes',
+        fontColor: 'white',
+      },
+      responsive: false,
+      animation: {
+        duration: 1000,
+        easing: 'easeOutBounce',
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            fontColor: 'white',
+            autoSkip: false,
+          },
+          gridLines: {
+            color: '#f76795',
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            fontColor: 'white',
+            min: 0,
+          },
+          gridLines: {
+            color: '#f76795',
+          }
+        }]
+      }
+    },
+  });
+}
+
+function displayChartPercentages() {
+  var ctx = document.getElementById('percentageResults').getContext('2d');
   new Chart(ctx,{
     type: 'bar',
     data: {
@@ -75,6 +128,11 @@ function displayChart() {
     options: {
       legend: {
         display: false,
+      },
+      title: {
+        display: true,
+        text: 'Percentage Of Votes (Votes / Views)',
+        fontColor: 'white',
       },
       responsive: false,
       animation: {
@@ -107,7 +165,7 @@ function displayChart() {
 
 // Function called when image is clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, allImages, results;
+  var randomIndex1, randomIndex2, randomIndex3, allImages, voteResults, percentageResults;
 
   // Adds vote for item clicked
   var target = event.target;
@@ -165,15 +223,18 @@ function displayImages(event) {
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
     allImages = document.getElementById('allImages');
-    results = document.getElementById('results');
+    voteResults = document.getElementById('voteResults');
+    percentageResults = document.getElementById('percentageResults');
 
     allImages.style.display = 'none';
-    results.style.display = 'block';
+    voteResults.style.display = 'block';
+    percentageResults.style.display = 'block';
     document.getElementById('descriptionOfTask').style.display = 'none';
     document.getElementById('descriptionOfResults').style.display = 'block';
 
     updateChartArrays();
-    displayChart();
+    displayChartVotes();
+    displayChartPercentages();
 
     // Allows user to continue voting or to reset saved data
     localStorage.saveCount = parseInt(localStorage.saveCount) + 1;
