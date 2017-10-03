@@ -1,6 +1,7 @@
 'use strict';
 
 RandomImages.all = [];
+RandomImages.displayCounter = 0;
 
 function RandomImages(name, url) {
   this.name = name;
@@ -35,7 +36,6 @@ var image1El = document.getElementById('image1');
 var image2El = document.getElementById('image2');
 var image3El = document.getElementById('image3');
 var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
-var displayCounter = 0;
 
 // Function Called When Image Is Clicked
 function displayImages(event) {
@@ -91,12 +91,21 @@ function displayImages(event) {
   console.log(random2.name + ' has been viewed ' + random2.views + ' times.');
   console.log(random3.name + ' has been viewed ' + random3.views + ' times.');
 
-  displayCounter++;
-  if (displayCounter === 26) {
+  RandomImages.displayCounter++;
+  if (RandomImages.displayCounter === 26) {
     randomImagesContent = document.getElementById('randomImages');
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
     for (i = 0; i < RandomImages.all.length; i++) {
       randomImg = RandomImages.all[i];
+
+      if (localStorage.saveCount > 0) {
+        randomImg.views = parseInt(localStorage[i + 'views']) + randomImg.views;
+        randomImg.votes = parseInt(localStorage[i + 'votes']) + randomImg.votes;
+      }
+
+      localStorage[i + 'views'] = randomImg.views;
+      localStorage[i + 'votes'] = randomImg.votes;
+
       randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
 
       randomImagesPercent = randomImg.votes / randomImg.views * 100;
@@ -104,8 +113,20 @@ function displayImages(event) {
         randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
       }
       randomImagesContent.innerHTML += '<br />';
+
     }
+    localStorage.saveCount = parseInt(localStorage.saveCount) + 1;
+    randomImagesContent.innerHTML += '<br />Your current votes have been saved. You have ' + localStorage.saveCount + ' saves.<br />[ <a href=\'index.html\'>Keep Voting</a> ] [ <a id=\'clearStorage\' href=\'index.html\'>Clear Previous Votes</a> ]';
+    document.getElementById('clearStorage').addEventListener('click', clearStorage);
   }
+}
+
+if (!localStorage.saveCount) {
+  localStorage.saveCount = 0;
+}
+function clearStorage() {
+  localStorage.clear();
+  localStorage.saveCount = 0;
 }
 
 // Event Listeners
