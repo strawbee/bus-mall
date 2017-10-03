@@ -1,7 +1,6 @@
 'use strict';
 
 RandomImages.all = [];
-RandomImages.percentClicked = [];
 
 function RandomImages(name, url) {
   this.name = name;
@@ -40,16 +39,17 @@ var displayCounter = 0;
 
 // Function Called When Image Is Clicked
 function displayImages(e) {
+  var randomImg, randomImagesPercent;
   var target = e.target;
-  if (target == image1El) {
+  if (target === image1El) {
     random1.votes += 1;
     console.log(random1.name + ' has been voted for ' + random1.votes + ' times.');
   }
-  else if (target == image2El) {
+  else if (target === image2El) {
     random2.votes += 1;
     console.log(random2.name + ' has been voted for ' + random2.votes + ' times.');
   }
-  else if (target == image3El) {
+  else if (target === image3El) {
     random3.votes += 1;
     console.log(random3.name + ' has been voted for ' + random3.votes + ' times.');
   }
@@ -95,11 +95,11 @@ function displayImages(e) {
     var randomImagesContent = document.getElementById('randomImages');
     randomImagesContent.innerHTML = 'You have voted 25 times: <br />';
     for (var i = 0; i < RandomImages.all.length; i++) {
-      randomImagesContent.innerHTML += RandomImages.all[i].name + ': ' + RandomImages.all[i].views + ' views || ' + RandomImages.all[i].votes + ' votes';
+      randomImg = RandomImages.all[i];
+      randomImagesContent.innerHTML += randomImg.name + ': ' + randomImg.views + ' views || ' + randomImg.votes + ' votes';
 
-      var randomImagesPercent = RandomImages.all[i].votes / RandomImages.all[i].views * 100;
-      RandomImages.percentClicked[i] = randomImagesPercent;
-      if (!isNaN(randomImagesPercent) && randomImagesPercent !== 0) {
+      randomImagesPercent = randomImg.votes / randomImg.views * 100;
+      if (!isNaN(randomImagesPercent)) {
         randomImagesContent.innerHTML += ' || ' + randomImagesPercent.toFixed(1) + '% chosen';
       }
 
