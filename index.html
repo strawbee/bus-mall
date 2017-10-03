@@ -12,27 +12,30 @@
 
     <h1>Bus-Mall User Survey</h1>
 
-    <div id="randomImages">
-      <p id="descriptionOfTask">
-        Please click the product of the three displayed that you would most likely purchase. <br />
-        Your results will display after 25 selections.
-      </p>
+    <section>
+      <div id="allImages">
+        <p>
+          Please click the product of the three displayed that you would most likely purchase. <br />
+          Your results will display after 25 selections.
+        </p>
 
-      <p id="descriptionOfResults">
-        Your current votes have been saved. You have made <span id="saveCount"></span> votes.<br />
-        [ <a href="index.html" alt="Keep Voting">Keep Voting</a> ] [ <a id="clearStorage" href="index.html" alt="Clear Previous Votes">Clear Previous Votes</a> ]
-      </p>
+        <p>
+          <img id="image1" src="" />
+          <img id="image2" src="" />
+          <img id="image3" src="" />
+        </p>
+      </div>
 
-      <p id="allImages">
-        <img id="image1" src="" />
-        <img id="image2" src="" />
-        <img id="image3" src="" />
-      </p>
+      <div id="showResults">
+        <p>
+          Your current votes have been saved. You have made <span id="saveCount"></span> votes.<br />
+          [ <a href="index.html" alt="Keep Voting">Keep Voting</a> ] [ <a id="clearStorage" href="index.html" alt="Clear Previous Votes">Clear Previous Votes</a> ]
+        </p>
 
-      <canvas id="voteResults" width="800" height="600"></canvas>
-      <br />
-      <canvas id="percentageResults" width="800" height="600"></canvas>
-    </div>
+        <canvas id="voteResults" width="800" height="600"></canvas><br />
+        <canvas id="percentageResults" width="800" height="600"></canvas>
+      </p>
+    </section>
 
     <script src="script.js"></script>
   </body>
