@@ -61,6 +61,7 @@ function updateChartArrays() {
   }
 }
 
+// Chart displaying number of votes
 function displayChartVotes() {
   var ctx = document.getElementById('voteResults').getContext('2d');
   new Chart(ctx,{
@@ -112,6 +113,7 @@ function displayChartVotes() {
   });
 }
 
+// Chart displaying percentage of votes over views
 function displayChartPercentages() {
   var ctx = document.getElementById('percentageResults').getContext('2d');
   new Chart(ctx,{
@@ -165,7 +167,7 @@ function displayChartPercentages() {
 
 // Function called when image is clicked
 function displayImages(event) {
-  var randomIndex1, randomIndex2, randomIndex3, allImages, showResults;
+  var randomIndex1, randomIndex2, randomIndex3;
   var image1El = box1El.firstChild;
   var image2El = box2El.firstChild;
   var image3El = box3El.firstChild;
@@ -199,6 +201,10 @@ function displayImages(event) {
   }
   while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex1 === noDisplay1 || randomIndex1 === noDisplay2 || randomIndex1 === noDisplay3);
 
+  noDisplay1 = randomIndex1;
+  noDisplay2 = randomIndex2;
+  noDisplay3 = randomIndex3;
+
   random1 = RandomImages.all[randomIndex1];
   random2 = RandomImages.all[randomIndex2];
   random3 = RandomImages.all[randomIndex3];
@@ -206,10 +212,6 @@ function displayImages(event) {
   image1El.src = random1.url;
   image2El.src = random2.url;
   image3El.src = random3.url;
-
-  noDisplay1 = randomIndex1;
-  noDisplay2 = randomIndex2;
-  noDisplay3 = randomIndex3;
 
   random1.views += 1;
   random2.views += 1;
@@ -222,10 +224,8 @@ function displayImages(event) {
   // Checks if user has voted 25 times
   RandomImages.displayCounter++;
   if (RandomImages.displayCounter === 26) {
-    allImages = document.getElementById('allImages');
-    showResults = document.getElementById('showResults');
-    allImages.style.display = 'none';
-    showResults.style.display = 'block';
+    document.getElementById('allImages').style.display = 'none';
+    document.getElementById('showResults').style.display = 'block';
 
     updateChartArrays();
     displayChartVotes();
