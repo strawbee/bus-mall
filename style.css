@@ -56,6 +56,28 @@ canvas {
   padding: 20px;
 }
 
+table {
+  margin: 20px;
+  border-collapse: collapse;
+  line-height: 1.0em;
+  background: #ed547b;
+}
+
+th {
+  padding: 15px;
+  border: solid 1px;
+  font-weight: 900;
+  width: 150px;
+  background: #e8305f;
+}
+
+td {
+  padding: 15px;
+  border: solid 1px;
+  font-weight: 100;
+  width: 150px;
+}
+
 .imgBox {
   display: flex;
   flex-direction: column;
@@ -81,4 +103,22 @@ canvas {
 
 #showResults {
   display: none;
+}
+
+#votesTable {
+  display: none;
+}
+
+#skipButton {
+  font-size: 1.5em;
+  padding: 20px 50px;
+  margin-top: 30px;
+  border: solid 5px #ffedf0;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 2px 2px 2px #a5264e;
+}
+
+#skipButton:hover {
+  cursor: pointer;
 }
