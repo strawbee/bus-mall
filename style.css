@@ -20,17 +20,13 @@ p {
 }
 
 img {
-  height: 200px;
-  width: auto;
-  margin: 10px;
-  border: solid 1px #d31550;
+  height: auto;
+  width: 200px;
   opacity: 0.8;
 }
 
 img:hover {
   opacity: 1.0;
-  cursor: pointer;
-  box-shadow: 2px 2px 2px #c63562;
 }
 
 h1 {
@@ -46,18 +42,37 @@ h1 {
 
 section {
   display: inline-block;
-  padding: 30px;
+  padding: 40px;
   margin: -30px auto 0 auto;
   background: #f4447c;
   color: #fff;
   border: 5px solid #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
   box-shadow: -2px 2px 2px #ffbfd3;
 }
 
 canvas {
   padding: 20px;
+}
+
+.imgBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  margin: 10px;
+  background: white;
+  border: solid 5px #ffedf0;
+  box-shadow: 2px 2px 5px #a5264e;
+  float: left;
+  border-radius: 5px;
+}
+
+.imgBox:hover {
+  cursor: pointer;
 }
 
 #allImages {
