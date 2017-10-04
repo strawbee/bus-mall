@@ -32,9 +32,9 @@ new RandomImages('Tentacle USB', 'images/usb.gif');
 new RandomImages('Self Watering Can', 'images/water-can.jpg');
 new RandomImages('Wine Glass', 'images/wine-glass.jpg');
 
-var image1El = document.getElementById('image1');
-var image2El = document.getElementById('image2');
-var image3El = document.getElementById('image3');
+var box1El = document.getElementById('box1');
+var box2El = document.getElementById('box2');
+var box3El = document.getElementById('box3');
 var random1, random2, random3, noDisplay1, noDisplay2, noDisplay3;
 
 var names = [];
@@ -166,6 +166,9 @@ function displayChartPercentages() {
 // Function called when image is clicked
 function displayImages(event) {
   var randomIndex1, randomIndex2, randomIndex3, allImages, showResults;
+  var image1El = box1El.firstChild;
+  var image2El = box2El.firstChild;
+  var image3El = box3El.firstChild;
 
   // Adds vote for item clicked
   var target = event.target;
@@ -249,6 +252,6 @@ function clearStorage() {
 
 // Event Listeners
 window.addEventListener('load', displayImages);
-image1El.addEventListener('click', displayImages);
-image2El.addEventListener('click', displayImages);
-image3El.addEventListener('click', displayImages);
+box1El.addEventListener('click', displayImages);
+box2El.addEventListener('click', displayImages);
+box3El.addEventListener('click', displayImages);
