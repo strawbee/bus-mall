@@ -186,21 +186,18 @@ function displayImages(event) {
   }
 
   // Generates new images, checks they do not repeat current or previous iteration, & adds views
-  randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
-  randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
-  randomIndex3 = Math.floor(Math.random() * RandomImages.all.length);
-
-  while(randomIndex3 === noDisplay1 || randomIndex3 === noDisplay2 || randomIndex3 === noDisplay3) {
+  do {
     randomIndex3 = Math.floor(Math.random() * RandomImages.all.length);
-  }
+  } while(randomIndex3 === noDisplay1 || randomIndex3 === noDisplay2 || randomIndex3 === noDisplay3);
 
-  while (randomIndex2 === randomIndex3 || randomIndex2 === noDisplay1 || randomIndex2 === noDisplay2 || randomIndex2 === noDisplay3) {
+  do {
     randomIndex2 = Math.floor(Math.random() * RandomImages.all.length);
-  }
+  } while (randomIndex2 === randomIndex3 || randomIndex2 === noDisplay1 || randomIndex2 === noDisplay2 || randomIndex2 === noDisplay3);
 
-  while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex1 === noDisplay1 || randomIndex1 === noDisplay2 || randomIndex1 === noDisplay3) {
+  do {
     randomIndex1 = Math.floor(Math.random() * RandomImages.all.length);
   }
+  while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex1 === noDisplay1 || randomIndex1 === noDisplay2 || randomIndex1 === noDisplay3);
 
   random1 = RandomImages.all[randomIndex1];
   random2 = RandomImages.all[randomIndex2];
