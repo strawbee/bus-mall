@@ -16,21 +16,25 @@
       <div id="allImages">
         <p>
           Please click the product of the three displayed that you would most likely purchase. <br />
+          If you would not purchase any of the items, click the Skip button.<br />
           Your results will display after 25 selections.
         </p>
 
         <div class="imgBox" id="box1"><img id="image1" src="" /></div>
         <div class="imgBox" id="box2"><img id="image2" src="" /></div>
         <div class="imgBox" id="box3"><img id="image3" src="" /></div>
+
+        <p>
+          <button id="skipButton">Skip</button>
+        </p>
       </div>
 
       <div id="showResults">
         <p>
           Your current votes have been saved. You have made <span id="saveCount"></span> votes.<br />
-          [ <a href="index.html" alt="Keep Voting">Keep Voting</a> ] [ <a id="clearStorage" href="index.html" alt="Clear Previous Votes">Clear Previous Votes</a> ]
+          [ <a href="index.html" alt="Keep Voting">Keep Voting</a> ] [ <a href="admin.html" alt="Admin Page">Admin Page</a> ]
         </p>
 
-        <canvas id="voteResults" width="800" height="600"></canvas><br />
         <canvas id="percentageResults" width="800" height="600"></canvas>
       </div>
     </section>
